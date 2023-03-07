@@ -47,3 +47,12 @@ export const toggleNoteSetting = itemID => {
 		});
 	};
 };
+
+export const modifyNote = (param, string, itemID) => {
+	return dispatch => {
+		dispatch({
+			type: "MODIFY_NOTE",
+			payload: { param, string, itemID },
+		});
+	};
+};

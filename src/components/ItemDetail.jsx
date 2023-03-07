@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,12 +9,19 @@ import {
 	incrementItemOnCart,
 	hardDeleteItemFromCart,
 	toggleNoteSetting,
+	modifyNote,
 } from "../redux/action/action.js";
 
 export default function ItemDetail(props) {
 	const appSetting = useSelector(state => state.appSetting);
 
 	const dispatch = useDispatch();
+
+	const [getUserInput, setUserInput] = useState("");
+
+	useEffect(() => {
+		setUserInput("");
+	}, [appSetting]);
 
 	const incrementButtonHandler = () => {
 		dispatch(incrementItemOnCart(props.queryData.id));
@@ -24,9 +31,15 @@ export default function ItemDetail(props) {
 		dispatch(decrementItemOnCart(props.queryData.id));
 	};
 
-	const noteSettingHandler = param => {
+	const noteSettingHandler = (param, string, itemID) => {
 		dispatch(toggleNoteSetting(param));
+		if (itemID && !string) {
+			dispatch(modifyNote(param, "", itemID));
+		} else {
+			dispatch(modifyNote(param, string, itemID));
+		}
 	};
+
 	const hardDeleteHandler = () => {
 		const swalWithBootstrapButtons = Swal.mixin({
 			customClass: {
@@ -84,6 +97,7 @@ export default function ItemDetail(props) {
 							className="form-control form-control-sm me-2"
 							type={"text"}
 							placeholder="Tulis Catatan"
+							onChange={e => setUserInput(e.target.value)}
 						></input>
 						<button
 							onClick={() => noteSettingHandler(0)}
@@ -92,7 +106,9 @@ export default function ItemDetail(props) {
 							Batal
 						</button>
 						<button
-							onClick={() => noteSettingHandler(0)}
+							onClick={() =>
+								noteSettingHandler(0, getUserInput, props.queryData.id)
+							}
 							className="btn btn-primary"
 						>
 							Ok
@@ -108,6 +124,11 @@ export default function ItemDetail(props) {
 					</div>
 				)}
 
+				{props.queryData.note ? (
+					<div className="me-4" style={{ color: "grey", fontSize: "0.9em" }}>
+						Catatan: {props.queryData.note}
+					</div>
+				) : null}
 				{appSetting.deleteMode ? (
 					<i
 						className="bi bi-trash3 ms-auto"

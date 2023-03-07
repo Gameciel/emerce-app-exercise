@@ -7,6 +7,7 @@ const init_state = [
 		qty: 1,
 		image:
 			"https://cdn.discordapp.com/attachments/1020655452754804817/1074618985426976808/image.png",
+		note: "",
 	},
 	{
 		id: 2,
@@ -16,6 +17,7 @@ const init_state = [
 		qty: 2,
 		image:
 			"https://i.etsystatic.com/12431793/r/il/cf40bb/1915762978/il_570xN.1915762978_jlw1.jpg",
+		note: "Ukuran XL",
 	},
 	{
 		id: 3,
@@ -25,6 +27,7 @@ const init_state = [
 		qty: 3,
 		image:
 			"https://i.pinimg.com/236x/a7/f2/41/a7f2416535db5ecc953cfaf013057bc0--baby-seal-cute-cartoon.jpg",
+		note: "",
 	},
 ];
 
@@ -37,6 +40,10 @@ export const cartReducer = (state = init_state, action) => {
 		case "DECREMENT_BY_ONE":
 			const toDecrement = decrementFrom(state, action);
 			return toDecrement;
+
+		case "MODIFY_NOTE":
+			const toModify = modifyFrom(state, action);
+			return toModify;
 
 		case "HARD_DELETE":
 			return state
@@ -63,12 +70,12 @@ const incrementFrom = (state, action) => {
 };
 
 const decrementFrom = (state, action) => {
-	const incrementedData = JSON.parse(JSON.stringify(state)).filter(
+	const decrementedData = JSON.parse(JSON.stringify(state)).filter(
 		item => item.id === action.payload
 	);
-	incrementedData[0].qty -= 1;
+	decrementedData[0].qty -= 1;
 
-	if (incrementedData[0].qty === 0) {
+	if (decrementedData[0].qty === 0) {
 		return [
 			...JSON.parse(JSON.stringify(state)).filter(
 				item => item.id !== action.payload
@@ -79,7 +86,24 @@ const decrementFrom = (state, action) => {
 			...JSON.parse(JSON.stringify(state)).filter(
 				item => item.id !== action.payload
 			),
-			...incrementedData,
+			...decrementedData,
 		].sort((a, b) => a.id - b.id);
 	}
+};
+
+const modifyFrom = (state, action) => {
+	const modifiedData = JSON.parse(JSON.stringify(state)).filter(
+		item => item.id === action.payload.itemID
+	);
+
+	if (action.payload.itemID) {
+		modifiedData[0].note = action.payload.string;
+	}
+
+	return [
+		...JSON.parse(JSON.stringify(state)).filter(
+			item => item.id !== action.payload.itemID
+		),
+		...modifiedData,
+	].sort((a, b) => a.id - b.id);
 };
