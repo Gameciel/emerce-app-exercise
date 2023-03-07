@@ -2,10 +2,12 @@ const init_state = {
 	1: {
 		merchantName: "Toko A",
 		merchantStatus: "Power Merchant",
+		merchantLocation: "Jakarta",
 	},
 	2: {
 		merchantName: "Toko B",
 		merchantStatus: "Pro Merchant",
+		merchantLocation: "Bandung",
 	},
 };
 
