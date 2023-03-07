@@ -48,11 +48,13 @@ export default function Cart() {
 									type="checkbox"
 									value=""
 									id="flexCheckDefault"
+									checked
 									disabled
 								></input>
 
 								<label className="form-check-label" htmlFor="flexCheckDefault">
-									Pilih Semua
+									Pilih Semua <i className="bi bi-lock-fill"></i>
+									<i className="bi bi-emoji-smile"></i>
 								</label>
 							</div>
 							<div style={{ color: "#03ac0e", fontSize: "1.2em" }}>

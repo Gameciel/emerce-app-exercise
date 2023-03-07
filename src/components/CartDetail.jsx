@@ -32,6 +32,8 @@ export default function CartDetail(props) {
 						type="checkbox"
 						value=""
 						id="flexCheckDefault"
+						checked
+						disabled
 					/>
 					<div className="d-flex flex-column align-items-start ms-1">
 						<label

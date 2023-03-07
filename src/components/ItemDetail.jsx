@@ -77,6 +77,8 @@ export default function ItemDetail(props) {
 						type="checkbox"
 						value=""
 						id={props.queryData.id}
+						checked
+						disabled
 					/>
 					<img
 						style={{ width: "65px", height: "65px" }}
