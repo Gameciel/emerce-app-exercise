@@ -1,10 +1,10 @@
 import React from "react";
+import MiniCart from "./MiniCart";
+
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Mynav() {
-	const globalData = useSelector(state => state);
-
 	return (
 		<nav
 			class="navbar navbar-expand-md navbar-light shadow-sm"
@@ -91,7 +91,7 @@ export default function Mynav() {
 							</div>
 						</a>
 						<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							{globalData.globalCartData.itemOnCart}
+							A
 						</span>
 						<div
 							style={{
@@ -104,9 +104,7 @@ export default function Mynav() {
 						>
 							<div className="d-flex flex-row">
 								<p className="">
-									<b style={{ color: "grey" }}>
-										Keranjang ({globalData.globalCartData.itemOnCart})
-									</b>
+									<b style={{ color: "grey" }}>Keranjang (0)</b>
 								</p>
 								<Link
 									style={{
@@ -119,7 +117,7 @@ export default function Mynav() {
 									Lihat Sekarang
 								</Link>
 							</div>
-							<RenderMiniCart />
+							<MiniCart />
 						</div>
 					</li>
 				</ul>
@@ -141,33 +139,4 @@ export default function Mynav() {
 			</div>
 		</nav>
 	);
-}
-
-function RenderMiniCart() {
-	const globalData = useSelector(state => state);
-
-	return globalData.globalCartData.item.map(value => {
-		return (
-			<>
-				<hr className="mt-3 mb-3" />
-				<div className="d-flex flex-row align-items-center">
-					<div>
-						<img
-							className="me-4"
-							style={{ width: "40px" }}
-							src={value.image}
-						></img>
-					</div>
-					<div className="me-auto">
-						<div className="fw-bold">{value.name}</div>
-						<div>{value.qty} Barang</div>
-					</div>
-					<div className="fw-bold ms-4" style={{ color: "#F96B01" }}>
-						Rp
-						{value.price.toLocaleString("id")}
-					</div>
-				</div>
-			</>
-		);
-	});
 }
