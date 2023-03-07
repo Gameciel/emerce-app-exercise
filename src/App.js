@@ -17,8 +17,8 @@ function App() {
 			<BrowserRouter>
 				<Provider store={store}>
 					<Routes>
-						<Route path="/" element={<Main />} />
-						<Route path="cart" element={<Cart />} />
+						<Route path="/emerce-app-exercise" element={<Main />} />
+						<Route path="/cart" element={<Cart />} />
 					</Routes>
 				</Provider>
 			</BrowserRouter>
