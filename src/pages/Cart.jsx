@@ -6,9 +6,11 @@ import CartDetail from "../components/CartDetail.jsx";
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
 	const [queryData, setQueryData] = useState(fakeQuery(cartData));
+	const [summary, getSummary] = useState(getCheckOutSummary(cartData));
 
 	useEffect(() => {
 		setQueryData(fakeQuery(cartData));
+		getSummary(getCheckOutSummary(cartData));
 	}, [cartData]);
 
 	const renderCartDetail = () => {
@@ -92,15 +94,17 @@ export default function Cart() {
 						<hr></hr>
 						<h4>Ringkasan belanja</h4>
 						<div className="d-flex flex-row justify-content-between">
-							<p>0 Barang</p>
-							<p className="fw-bold">Rp</p>
+							<p>{summary.qty} Barang</p>
+							<p className="fw-bold">
+								Rp {summary.totalPrice.toLocaleString("id")}
+							</p>
 						</div>
 						<button
 							className="btn fw-bold"
 							style={{ backgroundColor: "#03ac0e", color: "white" }}
-							disabled
+							disabled={!summary.qty}
 						>
-							Beli (0)
+							Beli ({summary.qty})
 						</button>
 					</div>
 				</div>
@@ -132,4 +136,16 @@ function fakeQuery(cartData) {
 	});
 
 	return queryResult;
+}
+
+function getCheckOutSummary(cartData) {
+	return cartData.reduce(
+		(accumulator, current) => {
+			return {
+				qty: accumulator.qty + current.qty,
+				totalPrice: accumulator.totalPrice + current.qty * current.price,
+			};
+		},
+		{ qty: 0, totalPrice: 0 }
+	);
 }

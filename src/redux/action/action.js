@@ -15,3 +15,12 @@ export const decrementItemOnCart = id => {
 		});
 	};
 };
+
+export const hardDeleteItemFromCart = id => {
+	return dispatch => {
+		dispatch({
+			type: "HARD_DELETE",
+			payload: id,
+		});
+	};
+};

@@ -39,7 +39,12 @@ export default function CartDetail(props) {
 							htmlFor="flexCheckDefault"
 							style={{ fontSize: "0.8em" }}
 						>
-							{merchantName} ({merchantStatus})
+							{merchantStatus === "Power Merchant" ? (
+								<i className="bi bi-award me-1"></i>
+							) : (
+								<i className="bi bi-bookmark-star me-1"></i>
+							)}
+							{merchantName}
 						</label>
 						<div style={{ fontSize: "0.8em" }}>
 							<i className="bi bi-geo-alt-fill me-1"></i>

@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+
+import Swal from "sweetalert2";
+
 import {
 	decrementItemOnCart,
 	incrementItemOnCart,
+	hardDeleteItemFromCart,
 } from "../redux/action/action.js";
 
 export default function ItemDetail(props) {
@@ -17,6 +21,34 @@ export default function ItemDetail(props) {
 		dispatch(decrementItemOnCart(props.queryData.id));
 	};
 
+	const hardDeleteHandler = () => {
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+				confirmButton: "btn btn-success ms-2",
+				cancelButton: "btn btn-danger me-2",
+			},
+			buttonsStyling: false,
+		});
+
+		swalWithBootstrapButtons
+			.fire({
+				title: "Ingin menghapus dari keranjang?",
+				text: "Lorem lorem",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonText: "Ya",
+				cancelButtonText: "Gak",
+				reverseButtons: true,
+			})
+			.then(result => {
+				if (result.isConfirmed) {
+					dispatch(hardDeleteItemFromCart(props.queryData.id));
+					swalWithBootstrapButtons.fire("Item Dihapus Dari Keranjang.");
+				} else if (result.dismiss === Swal.DismissReason.cancel) {
+					swalWithBootstrapButtons.fire("Cancelled");
+				}
+			});
+	};
 	return (
 		<>
 			<div className="d-flex flex-row ms-3">
@@ -49,7 +81,10 @@ export default function ItemDetail(props) {
 				<div className="ms-2" style={{ color: "grey" }}>
 					|
 				</div>
-				<i className="bi bi-trash3 ms-2"></i>
+				<i
+					className="bi bi-trash3 ms-2"
+					onClick={() => hardDeleteHandler()}
+				></i>
 				<div className="d-flex flex-row ms-4 me-1 align-items-center">
 					<button
 						type="button"

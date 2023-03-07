@@ -38,8 +38,10 @@ export const cartReducer = (state = init_state, action) => {
 			const toDecrement = decrementFrom(state, action);
 			return toDecrement;
 
-		case "HARD_REMOVE":
-			return state.filter(item => item.id === action.payload);
+		case "HARD_DELETE":
+			return state
+				.filter(item => item.id !== action.payload)
+				.sort((a, b) => a.id - b.id);
 
 		default:
 			return state;
