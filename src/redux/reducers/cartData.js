@@ -2,17 +2,17 @@ const init_state = [
 	{
 		id: 1,
 		merchantID: 1,
-		name: "Kaos Seal",
+		name: "Craft Kit - Decoration",
 		price: 125000,
 		qty: 1,
 		image:
-			"https://cdn.discordapp.com/attachments/1020655452754804817/1074618985426976808/image.png",
+			"https://i.etsystatic.com/21350989/r/il/712b92/3793430221/il_794xN.3793430221_9i8k.jpg",
 		note: "",
 	},
 	{
 		id: 2,
 		merchantID: 1,
-		name: "Kaos Seal2",
+		name: "Kaos - Hitam",
 		price: 135000,
 		qty: 2,
 		image:
@@ -22,11 +22,11 @@ const init_state = [
 	{
 		id: 3,
 		merchantID: 2,
-		name: "Tas Seal",
+		name: "Knots Kit",
 		price: 145000,
 		qty: 3,
 		image:
-			"https://i.pinimg.com/236x/a7/f2/41/a7f2416535db5ecc953cfaf013057bc0--baby-seal-cute-cartoon.jpg",
+			"https://i.etsystatic.com/26318708/r/il/5afa04/4168889983/il_794xN.4168889983_ejl9.jpg",
 		note: "",
 	},
 ];
