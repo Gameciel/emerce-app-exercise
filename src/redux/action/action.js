@@ -38,3 +38,12 @@ export const toggleDeleteMode = boolean => {
 		}
 	};
 };
+
+export const toggleNoteSetting = itemID => {
+	return dispatch => {
+		dispatch({
+			type: "TOGGLE_ADD_NOTE",
+			payload: itemID,
+		});
+	};
+};

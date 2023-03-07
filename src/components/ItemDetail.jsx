@@ -8,6 +8,7 @@ import {
 	decrementItemOnCart,
 	incrementItemOnCart,
 	hardDeleteItemFromCart,
+	toggleNoteSetting,
 } from "../redux/action/action.js";
 
 export default function ItemDetail(props) {
@@ -23,6 +24,9 @@ export default function ItemDetail(props) {
 		dispatch(decrementItemOnCart(props.queryData.id));
 	};
 
+	const noteSettingHandler = param => {
+		dispatch(toggleNoteSetting(param));
+	};
 	const hardDeleteHandler = () => {
 		const swalWithBootstrapButtons = Swal.mixin({
 			customClass: {
@@ -74,9 +78,35 @@ export default function ItemDetail(props) {
 				</div>
 			</div>
 			<div className="d-flex flex-row align-items-center justify-content-end ms-3 mt-3 mb-4 mx-1 pb-3 border-bottom border-3">
-				<div className="ms-4 me-3" style={{ color: "#03ac0e" }}>
-					Tulis Catatan
-				</div>
+				{props.queryData.id === appSetting.addNote ? (
+					<div className="d-flex flex-row">
+						<input
+							className="form-control form-control-sm me-2"
+							type={"text"}
+							placeholder="Tulis Catatan"
+						></input>
+						<button
+							onClick={() => noteSettingHandler(0)}
+							className="btn btn-danger me-1"
+						>
+							Batal
+						</button>
+						<button
+							onClick={() => noteSettingHandler(0)}
+							className="btn btn-primary"
+						>
+							Ok
+						</button>
+					</div>
+				) : (
+					<div
+						className="ms-4 me-3"
+						style={{ color: "#03ac0e" }}
+						onClick={() => noteSettingHandler(props.queryData.id)}
+					>
+						Tulis Catatan
+					</div>
+				)}
 
 				{appSetting.deleteMode ? (
 					<i
