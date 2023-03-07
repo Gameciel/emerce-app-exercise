@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-function fakeQuery(cartData) {
-	const process = cartData.reduce((accumulator, current) => {
-		if (accumulator[current.merchantID]) {
-			accumulator[current.merchantID].push(current);
-		} else {
-			accumulator[current.merchantID] = [current];
-		}
-		return { ...accumulator };
-	}, {});
-
-	const queryResult = [];
-	Object.keys(process).forEach(key => {
-		queryResult.push(process[key]);
-	});
-
-	return queryResult;
-}
+import CartDetail from "../components/CartDetail";
 
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
-	const merchantData = useSelector(state => state.merchant);
-
 	const [queryData, setQueryData] = useState(fakeQuery(cartData));
 
-	console.log(queryData);
+	const renderCartDetail = () => {
+		return queryData.map((data, index) => {
+			return (
+				<CartDetail
+					key={index}
+					merchantID={data[0].merchantID}
+					queryData={data}
+				/>
+			);
+		});
+	};
+
 	return (
 		<>
 			<div
@@ -72,7 +64,7 @@ export default function Cart() {
 						</div>
 						<hr className="my-3" />
 					</div>
-					<div>Cart Kosong</div>
+					{cartData.length ? renderCartDetail() : <div>Cart Kosong</div>}
 				</div>
 				<div
 					className="d-flex flex-column mt-5 ms-5 col-2 shadow-sm border border-secondary py-3 px-3 rounded"
@@ -104,7 +96,7 @@ export default function Cart() {
 							style={{ backgroundColor: "#03ac0e", color: "white" }}
 							disabled
 						>
-							Beli ()
+							Beli (0)
 						</button>
 					</div>
 				</div>
@@ -118,4 +110,22 @@ export default function Cart() {
 			</div>
 		</>
 	);
+}
+
+function fakeQuery(cartData) {
+	const process = cartData.reduce((accumulator, current) => {
+		if (accumulator[current.merchantID]) {
+			accumulator[current.merchantID].push(current);
+		} else {
+			accumulator[current.merchantID] = [current];
+		}
+		return { ...accumulator };
+	}, {});
+
+	const queryResult = [];
+	Object.keys(process).forEach(key => {
+		queryResult.push(process[key]);
+	});
+
+	return queryResult;
 }
