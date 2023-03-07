@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartDetail from "../components/CartDetail.jsx";
+import { toggleDeleteMode } from "../redux/action/action.js";
 
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
+
 	const [queryData, setQueryData] = useState(fakeQuery(cartData));
 	const [summary, getSummary] = useState(getCheckOutSummary(cartData));
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setQueryData(fakeQuery(cartData));
@@ -58,6 +62,7 @@ export default function Cart() {
 										type="checkbox"
 										role="switch"
 										id="flexSwitchCheckDefault"
+										onChange={e => dispatch(toggleDeleteMode(e.target.checked))}
 									/>
 									<label
 										className="form-check-label"

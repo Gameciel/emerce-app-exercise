@@ -24,3 +24,17 @@ export const hardDeleteItemFromCart = id => {
 		});
 	};
 };
+
+export const toggleDeleteMode = boolean => {
+	return dispatch => {
+		if (boolean) {
+			dispatch({
+				type: "TOGGLE_ON_DELETE_MODE",
+			});
+		} else {
+			dispatch({
+				type: "TOGGLE_OFF_DELETE_MODE",
+			});
+		}
+	};
+};

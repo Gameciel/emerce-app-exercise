@@ -11,6 +11,8 @@ import {
 } from "../redux/action/action.js";
 
 export default function ItemDetail(props) {
+	const appSetting = useSelector(state => state.appSetting);
+
 	const dispatch = useDispatch();
 
 	const incrementButtonHandler = () => {
@@ -75,16 +77,23 @@ export default function ItemDetail(props) {
 				<div className="ms-4 me-3" style={{ color: "#03ac0e" }}>
 					Tulis Catatan
 				</div>
-				<div className="ms-auto" style={{ color: "grey" }}>
-					Pindahkan ke wishlist
-				</div>
-				<div className="ms-2" style={{ color: "grey" }}>
-					|
-				</div>
-				<i
-					className="bi bi-trash3 ms-2"
-					onClick={() => hardDeleteHandler()}
-				></i>
+
+				{appSetting.deleteMode ? (
+					<i
+						className="bi bi-trash3 ms-auto"
+						onClick={() => hardDeleteHandler()}
+					></i>
+				) : (
+					<>
+						<div className="ms-auto" style={{ color: "grey" }}>
+							Pindahkan ke wishlist
+						</div>
+						<div className="ms-3" style={{ color: "grey" }}>
+							|
+						</div>
+					</>
+				)}
+
 				<div className="d-flex flex-row ms-4 me-1 align-items-center">
 					<button
 						type="button"
