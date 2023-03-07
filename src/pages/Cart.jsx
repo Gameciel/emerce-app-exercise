@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CartDetail from "../components/CartDetail";
+import CartDetail from "../components/CartDetail.jsx";
 
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
 	const [queryData, setQueryData] = useState(fakeQuery(cartData));
+
+	useEffect(() => {
+		setQueryData(fakeQuery(cartData));
+	}, [cartData]);
 
 	const renderCartDetail = () => {
 		return queryData.map((data, index) => {

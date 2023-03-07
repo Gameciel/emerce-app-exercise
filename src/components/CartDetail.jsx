@@ -15,7 +15,7 @@ export default function CartDetail(props) {
 		getMerchantDataFromDatabase(merchantData, props.merchantID).location
 	);
 
-	const renderItem = () => {
+	const renderItemDetail = () => {
 		return props.queryData.map((data, index) => {
 			return <ItemDetail key={index} queryData={data} />;
 		});
@@ -33,7 +33,7 @@ export default function CartDetail(props) {
 					/>
 					<div className="d-flex flex-column align-items-start ms-1">
 						<label
-							className="form-check-label fw-bold mt-2"
+							className="form-check-label fw-bold mt-1"
 							htmlFor="flexCheckDefault"
 							style={{ fontSize: "0.8em" }}
 						>
@@ -43,7 +43,7 @@ export default function CartDetail(props) {
 					</div>
 				</div>
 			</div>
-			{renderItem()}
+			{renderItemDetail()}
 		</div>
 	);
 }

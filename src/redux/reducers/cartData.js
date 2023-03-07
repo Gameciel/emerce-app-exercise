@@ -30,10 +30,28 @@ const init_state = [
 
 export const cartReducer = (state = init_state, action) => {
 	switch (action.type) {
+		case "INCREMENT_BY_ONE":
+			const toIncrement = incrementFrom(state, action);
+			return toIncrement;
+
 		case "HARD_REMOVE":
-			return state.filter(item => item.id === action.payload.id);
+			return state.filter(item => item.id === action.payload);
 
 		default:
 			return state;
 	}
+};
+
+const incrementFrom = (state, action) => {
+	const incrementedData = JSON.parse(JSON.stringify(state)).filter(
+		item => item.id === action.payload
+	);
+	incrementedData[0].qty += 1;
+
+	return [
+		...JSON.parse(JSON.stringify(state)).filter(
+			item => item.id !== action.payload
+		),
+		...incrementedData,
+	].sort((a, b) => a.id - b.id);
 };

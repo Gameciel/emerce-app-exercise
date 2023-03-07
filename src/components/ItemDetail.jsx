@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { incrementItemOnCart } from "../redux/action/action.js";
 
 export default function ItemDetail(props) {
+	const dispatch = useDispatch();
+	const cartData = useSelector(state => state.cart);
+
+	const incrementButtonHandler = () => {
+		dispatch(incrementItemOnCart(props.queryData.id));
+	};
+
+	const decrementButtonHandler = () => {
+		console.log(props.queryData.id);
+	};
+
 	return (
 		<>
 			<div className="d-flex flex-row ms-3">
@@ -23,7 +37,7 @@ export default function ItemDetail(props) {
 					</div>
 				</div>
 			</div>
-			<div className="d-flex flex-row align-items-center justify-content-end ms-3 mt-4 mb-4 mx-1 pb-3 border-bottom border-3">
+			<div className="d-flex flex-row align-items-center justify-content-end ms-3 mt-3 mb-4 mx-1 pb-3 border-bottom border-3">
 				<div className="ms-4 me-3" style={{ color: "#03ac0e" }}>
 					Tulis Catatan
 				</div>
@@ -39,6 +53,7 @@ export default function ItemDetail(props) {
 						type="button"
 						className="btn btn-link me-2 fw-bold"
 						style={{ textDecoration: "none", color: "#03AC0E" }}
+						onClick={event => decrementButtonHandler(event)}
 					>
 						-
 					</button>
@@ -47,6 +62,7 @@ export default function ItemDetail(props) {
 						type="button"
 						className="btn btn-link ms-2 fw-bold"
 						style={{ textDecoration: "none", color: "#03AC0E" }}
+						onClick={event => incrementButtonHandler(event)}
 					>
 						+
 					</button>
