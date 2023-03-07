@@ -17,7 +17,9 @@ export default function CartDetail(props) {
 
 	const renderItemDetail = () => {
 		return props.queryData.map((data, index) => {
-			return <ItemDetail key={index} queryData={data} />;
+			if (data.qty) {
+				return <ItemDetail key={index} queryData={data} />;
+			}
 		});
 	};
 
@@ -39,7 +41,10 @@ export default function CartDetail(props) {
 						>
 							{merchantName} ({merchantStatus})
 						</label>
-						<div style={{ fontSize: "0.8em" }}>{merchantLocation}</div>
+						<div style={{ fontSize: "0.8em" }}>
+							<i className="bi bi-geo-alt-fill me-1"></i>
+							{merchantLocation}
+						</div>
 					</div>
 				</div>
 			</div>

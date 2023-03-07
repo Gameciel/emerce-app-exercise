@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { incrementItemOnCart } from "../redux/action/action.js";
+import {
+	decrementItemOnCart,
+	incrementItemOnCart,
+} from "../redux/action/action.js";
 
 export default function ItemDetail(props) {
 	const dispatch = useDispatch();
-	const cartData = useSelector(state => state.cart);
 
 	const incrementButtonHandler = () => {
 		dispatch(incrementItemOnCart(props.queryData.id));
 	};
 
 	const decrementButtonHandler = () => {
-		console.log(props.queryData.id);
+		dispatch(decrementItemOnCart(props.queryData.id));
 	};
 
 	return (

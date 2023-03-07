@@ -6,3 +6,12 @@ export const incrementItemOnCart = id => {
 		});
 	};
 };
+
+export const decrementItemOnCart = id => {
+	return dispatch => {
+		dispatch({
+			type: "DECREMENT_BY_ONE",
+			payload: id,
+		});
+	};
+};
