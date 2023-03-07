@@ -1,7 +1,7 @@
 const init_state = [
 	{
 		id: 1,
-		storeID: 1,
+		merchantID: 1,
 		name: "Kaos Seal",
 		price: 125000,
 		qty: 1,
@@ -10,7 +10,7 @@ const init_state = [
 	},
 	{
 		id: 2,
-		storeID: 1,
+		merchantID: 1,
 		name: "Kaos Seal2",
 		price: 135000,
 		qty: 2,
@@ -19,7 +19,7 @@ const init_state = [
 	},
 	{
 		id: 3,
-		storeID: 2,
+		merchantID: 2,
 		name: "Tas Seal",
 		price: 145000,
 		qty: 3,

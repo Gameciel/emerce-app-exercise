@@ -2,9 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+function fakeQuery(cartData) {
+	const process = cartData.reduce((accumulator, current) => {
+		if (accumulator[current.merchantID]) {
+			accumulator[current.merchantID].push(current);
+		} else {
+			accumulator[current.merchantID] = [current];
+		}
+		return { ...accumulator };
+	}, {});
+
+	const queryResult = [];
+	Object.keys(process).forEach(key => {
+		queryResult.push(process[key]);
+	});
+
+	return queryResult;
+}
+
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
+	const merchantData = useSelector(state => state.merchant);
 
+	const [queryData, setQueryData] = useState(fakeQuery(cartData));
+
+	console.log(queryData);
 	return (
 		<>
 			<div
