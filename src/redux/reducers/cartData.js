@@ -1,6 +1,7 @@
 const init_state = [
 	{
 		id: 1,
+		storeID: 1,
 		name: "Kaos Seal",
 		price: 125000,
 		qty: 1,
@@ -9,14 +10,16 @@ const init_state = [
 	},
 	{
 		id: 2,
+		storeID: 1,
 		name: "Kaos Seal2",
-		price: 126000,
+		price: 135000,
 		qty: 2,
 		image:
 			"https://i.etsystatic.com/12431793/r/il/cf40bb/1915762978/il_570xN.1915762978_jlw1.jpg",
 	},
 	{
 		id: 3,
+		storeID: 2,
 		name: "Tas Seal",
 		price: 145000,
 		qty: 3,
