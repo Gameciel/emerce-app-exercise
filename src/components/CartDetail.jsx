@@ -6,10 +6,13 @@ export default function CartDetail(props) {
 	const merchantData = useSelector(state => state.merchant);
 
 	const [merchantName, setMerchantName] = useState(
-		getMerchantNameFromDatabase(merchantData, props.merchantID)
+		getMerchantDataFromDatabase(merchantData, props.merchantID).name
 	);
 	const [merchantStatus, setMerchantStatus] = useState(
-		getMerchantStatusFromDatabase(merchantData, props.merchantID)
+		getMerchantDataFromDatabase(merchantData, props.merchantID).status
+	);
+	const [merchantLocation, setMerchantLocation] = useState(
+		getMerchantDataFromDatabase(merchantData, props.merchantID).location
 	);
 
 	const renderItem = () => {
@@ -36,7 +39,7 @@ export default function CartDetail(props) {
 						>
 							{merchantName} ({merchantStatus})
 						</label>
-						<div style={{ fontSize: "0.8em" }}>Jakarta</div>
+						<div style={{ fontSize: "0.8em" }}>{merchantLocation}</div>
 					</div>
 				</div>
 			</div>
@@ -45,10 +48,10 @@ export default function CartDetail(props) {
 	);
 }
 
-const getMerchantNameFromDatabase = (merchantData, merchantID) => {
-	return merchantData[merchantID].merchantName;
-};
-
-const getMerchantStatusFromDatabase = (merchantData, merchantID) => {
-	return merchantData[merchantID].merchantStatus;
+const getMerchantDataFromDatabase = (merchantData, merchantID) => {
+	return {
+		name: merchantData[merchantID].name,
+		status: merchantData[merchantID].status,
+		location: merchantData[merchantID].location,
+	};
 };
