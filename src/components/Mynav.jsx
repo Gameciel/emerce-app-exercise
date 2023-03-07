@@ -9,7 +9,7 @@ export default function Mynav() {
 
 	return (
 		<nav
-			class="navbar navbar-expand-md navbar-light shadow-sm"
+			className="navbar navbar-expand-md navbar-light shadow-sm"
 			style={{
 				backgroundColor: "#fff",
 			}}
@@ -42,15 +42,15 @@ export default function Mynav() {
 				aria-expanded="false"
 				aria-label="Toggle navigation"
 			>
-				<span class="navbar-toggler-icon"></span>
+				<span className="navbar-toggler-icon"></span>
 			</button>
 			<div
-				class="collapse navbar-collapse justify-content-start"
+				className="collapse navbar-collapse justify-content-start"
 				id="navbarNavDropdown"
 			>
-				<ul class="navbar-nav me-3">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">
+				<ul className="navbar-nav me-3">
+					<li className="nav-item active">
+						<a className="nav-link" href="#">
 							Kategori
 						</a>
 					</li>
@@ -78,7 +78,7 @@ export default function Mynav() {
 					</div>
 				</form>
 
-				<ul class="navbar-nav ms-2 me-1">
+				<ul className="navbar-nav ms-2 me-1">
 					<li className="nav-item dropdown">
 						<a
 							className="nav-link"
