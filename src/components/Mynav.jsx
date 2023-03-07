@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Mynav() {
+	const cartData = useSelector(state => state.cart);
+
 	return (
 		<nav
 			class="navbar navbar-expand-md navbar-light shadow-sm"
@@ -91,7 +93,7 @@ export default function Mynav() {
 							</div>
 						</a>
 						<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							A
+							{cartData.length}
 						</span>
 						<div
 							style={{
@@ -104,7 +106,7 @@ export default function Mynav() {
 						>
 							<div className="d-flex flex-row">
 								<p className="">
-									<b style={{ color: "grey" }}>Keranjang (0)</b>
+									<b style={{ color: "grey" }}>Keranjang ({cartData.length})</b>
 								</p>
 								<Link
 									style={{

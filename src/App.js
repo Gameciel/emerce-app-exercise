@@ -9,18 +9,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Cart from "./pages/Cart";
 
-// const store = configureStore({ reducer: rootReducer });
+const store = configureStore({ reducer: rootReducer });
 
 function App() {
 	return (
 		<>
 			<BrowserRouter>
-				{/* <Provider store={store}> */}
-				<Routes>
-					<Route path="/" element={<Main />} />
-					<Route path="cart" element={<Cart />} />
-				</Routes>
-				{/* </Provider> */}
+				<Provider store={store}>
+					<Routes>
+						<Route path="/" element={<Main />} />
+						<Route path="cart" element={<Cart />} />
+					</Routes>
+				</Provider>
 			</BrowserRouter>
 		</>
 	);
