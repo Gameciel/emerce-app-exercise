@@ -2,7 +2,7 @@ const init_state = [
 	{
 		id: 1,
 		merchantID: 1,
-		name: "Craft Kit - Decoration",
+		name: "Item A",
 		price: 125000,
 		qty: 1,
 		image:
@@ -22,7 +22,7 @@ const init_state = [
 	{
 		id: 3,
 		merchantID: 2,
-		name: "Knots Kit",
+		name: "Item C",
 		price: 145000,
 		qty: 3,
 		image:

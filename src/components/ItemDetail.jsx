@@ -51,7 +51,7 @@ export default function ItemDetail(props) {
 
 		swalWithBootstrapButtons
 			.fire({
-				title: "Ingin menghapus dari keranjang?",
+				title: `Ingin menghapus <b>${props.queryData.name}</b> dari keranjang?`,
 				text: "Lorem lorem",
 				icon: "warning",
 				showCancelButton: true,
