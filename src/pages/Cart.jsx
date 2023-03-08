@@ -84,7 +84,7 @@ export default function Cart() {
 					{cartData.length ? renderCartDetail() : <div>Cart Kosong</div>}
 				</div>
 				<div
-					className="d-flex flex-column mt-5 ms-5 col-2 shadow-sm border border-secondary py-3 px-3 rounded"
+					className="d-flex flex-column mt-5 ms-5 col-2 shadow-sm border border-2 py-3 px-3 rounded"
 					style={{ width: "max-content" }}
 				>
 					<div className="d-flex flex-column align-items-stretch">
