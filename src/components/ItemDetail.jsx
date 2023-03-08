@@ -9,6 +9,7 @@ import {
 	incrementItemOnCart,
 	hardDeleteItemFromCart,
 	toggleNoteSetting,
+	toggleDeleteMode,
 	modifyNote,
 } from "../redux/action/action.js";
 
@@ -22,6 +23,10 @@ export default function ItemDetail(props) {
 	useEffect(() => {
 		setUserInput("");
 	}, [appSetting]);
+
+	useEffect(() => {
+		return dispatch(toggleDeleteMode(false));
+	}, []);
 
 	const incrementButtonHandler = () => {
 		dispatch(incrementItemOnCart(props.queryData.id));

@@ -14,6 +14,6 @@ export const appSettingReducer = (state = init_state, action) => {
 			return { ...state, addNote: action.payload };
 
 		default:
-			return state;
+			return { ...state, deleteMode: false };
 	}
 };
