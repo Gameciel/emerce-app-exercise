@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../redux/action/action";
 
 export default function StoreTest() {
 	const dispatch = useDispatch();
+	const merchantData = useSelector(state => state.merchant);
 
 	const [staticItems, setStaticItems] = useState([
 		{
@@ -38,8 +39,21 @@ export default function StoreTest() {
 						alt="Card image cap"
 					/>
 					<div className="card-body">
-						<h5 className="card-title">{value.name}</h5>
-						<p className="card-text">Rp {value.price.toLocaleString("id")}</p>
+						<h4 className="card-title mb-4">{value.name}</h4>
+						<h5 className="card-title">
+							{merchantData[value.merchantID].status === "Power Merchant" ? (
+								<i className="bi bi-award me-1"></i>
+							) : (
+								<i className="bi bi-bookmark-star me-1"></i>
+							)}
+							{merchantData[value.merchantID].name}
+						</h5>
+						<p className="card-title mt-0 mb-4">
+							{merchantData[value.merchantID].location}
+						</p>
+						<p className="card-text mb-4">
+							Rp {value.price.toLocaleString("id")}
+						</p>
 						<button
 							onClick={() => dispatch(addItemToCart(value, value.id))}
 							type="btn"
