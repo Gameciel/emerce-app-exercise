@@ -133,6 +133,7 @@ export default function ItemDetail(props) {
 				) : null}
 				{appSetting.deleteMode ? (
 					<i
+						style={{ color: "red" }}
 						className="bi bi-trash3 ms-auto"
 						onClick={() => hardDeleteHandler()}
 					></i>

@@ -6,7 +6,7 @@ import { toggleDeleteMode } from "../redux/action/action.js";
 
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
-
+	const appSetting = useSelector(state => state.appSetting);
 	const [queryData, setQueryData] = useState(fakeQuery(cartData));
 	const [summary, getSummary] = useState(getCheckOutSummary(cartData));
 
@@ -70,7 +70,11 @@ export default function Cart() {
 										className="form-check-label"
 										htmlFor="flexSwitchCheckDefault"
 									>
-										<i className="bi bi-trash3"></i>
+										{appSetting.deleteMode ? (
+											<i className="bi bi-trash3" style={{ color: "red" }}></i>
+										) : (
+											<i className="bi bi-trash3"></i>
+										)}
 									</label>
 								</div>
 							</div>
