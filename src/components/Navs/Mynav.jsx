@@ -1,11 +1,11 @@
 import React from "react";
-import MiniCart from "./MiniCart";
+import MiniCart from "../Carts/MiniCart";
 
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Mynav() {
-	const cartData = useSelector(state => state.cart);
+	// const cartData = useSelector(state => state.cart);
 
 	return (
 		<nav
@@ -18,7 +18,7 @@ export default function Mynav() {
 				<img
 					className="px-1 py-1 me-2"
 					style={{ width: "37px" }}
-					src={require("../assets/mainLogo.png")}
+					src={require("../../assets/mainLogo.png")}
 				/>
 				<a
 					className="navbar-brand"
@@ -93,7 +93,7 @@ export default function Mynav() {
 							</div>
 						</a>
 						<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							{cartData.length}
+							0
 						</span>
 						<div
 							style={{
@@ -106,7 +106,7 @@ export default function Mynav() {
 						>
 							<div className="d-flex flex-row">
 								<p className="">
-									<b style={{ color: "grey" }}>Keranjang ({cartData.length})</b>
+									<b style={{ color: "grey" }}>Keranjang (0)</b>
 								</p>
 								<Link
 									style={{

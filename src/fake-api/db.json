@@ -1,0 +1,81 @@
+{
+	"products": [
+		{
+			"id": 1,
+			"name": "Glass Painting Lamp",
+			"price": 100000,
+			"image": "https://i.etsystatic.com/21350989/r/il/712b92/3793430221/il_794xN.3793430221_9i8k.jpg",
+			"merchant": {
+				"name": "Toko A",
+				"status": "Power Merchant",
+				"location": "Jakarta"
+			}
+		},
+		{
+			"id": 2,
+			"name": "Seal T-Shirt",
+			"price": 200000,
+			"image": "https://i.etsystatic.com/12431793/r/il/cf40bb/1915762978/il_570xN.1915762978_jlw1.jpg",
+			"merchant": {
+				"name": "Toko A",
+				"status": "Power Merchant",
+				"location": "Jakarta"
+			}
+		},
+		{
+			"id": 3,
+			"name": "Kits DIY Embroidery set",
+			"price": 300000,
+			"image": "https://i.etsystatic.com/24169104/r/il/e97f06/4148325814/il_794xN.4148325814_oc1q.jpg",
+			"merchant": {
+				"name": "Toko B",
+				"status": "Pro Merchant",
+				"location": "Bandung"
+			}
+		},
+		{
+			"id": 4,
+			"name": "Miniature Decoration",
+			"price": 400000,
+			"image": "https://i.etsystatic.com/6891259/r/il/2cfed6/2965077259/il_794xN.2965077259_3570.jpg",
+			"merchant": {
+				"name": "Toko A",
+				"status": "Power Merchant",
+				"location": "Jakarta"
+			}
+		},
+		{
+			"id": 5,
+			"name": "Essential Oil",
+			"price": 500000,
+			"image": "https://i.etsystatic.com/iap/55c7ab/4521497480/iap_640x640.4521497480_4brrs39z.jpg?version=0",
+			"merchant": {
+				"name": "Toko B",
+				"status": "Pro Merchant",
+				"location": "Bandung"
+			}
+		}
+	],
+
+	"merchants": [
+		{ "_comment": "obsolete data (old scheme)" },
+		{
+			"id": "1",
+			"name": "Toko A",
+			"status": "Power Merchant",
+			"location": "Jakarta"
+		},
+		{
+			"id": "2",
+			"name": "Toko B",
+			"status": "Pro Merchant",
+			"location": "Bandung"
+		},
+		{
+			"id": "3",
+			"name": "Admin",
+			"status": "Admin",
+			"location": "Solo"
+		}
+	]
+}

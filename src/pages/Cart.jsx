@@ -1,33 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
-import CartDetail from "../components/CartDetail.jsx";
-import { toggleDeleteMode } from "../redux/action/action.js";
+import CartDetail from "../components/Carts/CartDetail.jsx";
+
 
 export default function Cart() {
-	const cartData = useSelector(state => state.cart);
-	const appSetting = useSelector(state => state.appSetting);
-	const [queryData, setQueryData] = useState(fakeQuery(cartData));
-	const [summary, getSummary] = useState(getCheckOutSummary(cartData));
-
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		setQueryData(fakeQuery(cartData));
-		getSummary(getCheckOutSummary(cartData));
-	}, [cartData]);
-
-	const renderCartDetail = () => {
-		return queryData.map((data, index) => {
-			return (
-				<CartDetail
-					key={index}
-					merchantID={data[0].merchantID}
-					queryData={data}
-				/>
-			);
-		});
-	};
 
 	return (
 		<>
@@ -64,24 +41,22 @@ export default function Cart() {
 										type="checkbox"
 										role="switch"
 										id="flexSwitchCheckDefault"
-										onChange={e => dispatch(toggleDeleteMode(e.target.checked))}
+									
 									/>
 									<label
 										className="form-check-label"
 										htmlFor="flexSwitchCheckDefault"
 									>
-										{appSetting.deleteMode ? (
-											<i className="bi bi-trash3" style={{ color: "red" }}></i>
-										) : (
+	
 											<i className="bi bi-trash3"></i>
-										)}
+				
 									</label>
 								</div>
 							</div>
 						</div>
 						<hr className="my-3" />
 					</div>
-					{cartData.length ? renderCartDetail() : <div>Cart Kosong</div>}
+					<div>Cart Kosong</div>
 				</div>
 				<div
 					className="d-flex flex-column mt-5 ms-5 col-2 shadow-sm border border-2 py-3 px-3 rounded"
@@ -105,17 +80,17 @@ export default function Cart() {
 						<hr></hr>
 						<h4>Ringkasan belanja</h4>
 						<div className="d-flex flex-row justify-content-between">
-							<p>{summary.qty} Barang</p>
+							<p>0 Barang</p>
 							<p className="fw-bold">
-								Rp {summary.totalPrice.toLocaleString("id")}
+								Rp 0
 							</p>
 						</div>
 						<button
 							className="btn fw-bold"
 							style={{ backgroundColor: "#03ac0e", color: "white" }}
-							disabled={!summary.qty}
+					
 						>
-							Beli ({summary.qty})
+							Beli 
 						</button>
 					</div>
 				</div>
@@ -128,35 +103,5 @@ export default function Cart() {
 				</Link>
 			</div>
 		</>
-	);
-}
-
-function fakeQuery(cartData) {
-	const process = cartData.reduce((accumulator, current) => {
-		if (accumulator[current.merchantID]) {
-			accumulator[current.merchantID].push(current);
-		} else {
-			accumulator[current.merchantID] = [current];
-		}
-		return { ...accumulator };
-	}, {});
-
-	const queryResult = [];
-	Object.keys(process).forEach(key => {
-		queryResult.push(process[key]);
-	});
-
-	return queryResult;
-}
-
-function getCheckOutSummary(cartData) {
-	return cartData.reduce(
-		(accumulator, current) => {
-			return {
-				qty: accumulator.qty + current.qty,
-				totalPrice: accumulator.totalPrice + current.qty * current.price,
-			};
-		},
-		{ qty: 0, totalPrice: 0 }
 	);
 }

@@ -1,14 +1,15 @@
 import React from "react";
-import Mynav from "../components/Mynav";
-import NavMini from "../components/NavMini";
-import StoreTest from "../components/StoreTest";
+import AdminPage from "../components/AdminPage";
+import Mynav from "../components/Navs/Mynav";
+import NavMini from "../components/Navs/NavMini";
+
 
 export default function Main() {
 	return (
 		<>
 			<NavMini />
 			<Mynav />
-			<StoreTest />
+			<AdminPage />
 		</>
 	);
 }
