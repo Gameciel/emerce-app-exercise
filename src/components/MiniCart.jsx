@@ -21,7 +21,7 @@ export default function MiniCart() {
 						<div>{item.qty} Barang</div>
 					</div>
 					<div className="fw-bold ms-4" style={{ color: "#F96B01" }}>
-						Rp {item.price}
+						Rp {item.price.toLocaleString("id")}
 					</div>
 				</div>
 			</div>
