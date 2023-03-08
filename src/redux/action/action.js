@@ -25,6 +25,15 @@ export const hardDeleteItemFromCart = id => {
 	};
 };
 
+export const addItemToCart = (item, itemID) => {
+	return dispatch => {
+		dispatch({
+			type: "ADD_TO_CART",
+			payload: { item: item, id: itemID },
+		});
+	};
+};
+
 export const toggleDeleteMode = boolean => {
 	return dispatch => {
 		if (boolean) {

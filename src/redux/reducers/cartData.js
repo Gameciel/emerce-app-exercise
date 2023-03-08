@@ -50,6 +50,13 @@ export const cartReducer = (state = init_state, action) => {
 				.filter(item => item.id !== action.payload)
 				.sort((a, b) => a.id - b.id);
 
+		case "ADD_TO_CART":
+			if (state.some(object => object.id === action.payload.id)) {
+				return incrementFrom(state, { payload: action.payload.id });
+			} else {
+				return [...state, action.payload.item];
+			}
+
 		default:
 			return state;
 	}
