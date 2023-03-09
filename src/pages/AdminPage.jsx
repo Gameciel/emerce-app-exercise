@@ -1,18 +1,25 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Adjust the url when needed
 import { API_URL } from "../fake-api/API_URL";
 
 export default function AdminPage() {
 	return (
-		<>
+		<div>
+			<Link to="/emerce-app-exercise">
+				<button type="button" className="btn btn-primary ms-4 mt-4">
+					{"<"} Return to main
+				</button>
+			</Link>
+
 			<AdminHeader />
-			<div className="d-flex flex-row my-4 justify-content-center">
+			<div className="d-flex flex-row my-5 justify-content-center">
 				<AdminBody />
 				<AddItemForm />
 			</div>
-		</>
+		</div>
 	);
 }
 
@@ -143,8 +150,13 @@ function AddItemForm() {
 			});
 	};
 	return (
-		<form className="ms-5 needs-validation">
-			<h2>Add Item:</h2>
+		<form
+			className="needs-validation mx-2 px-4 py-4 border rounded"
+			style={{ height: "max-content" }}
+		>
+			<h2>
+				<small class="text-muted mx-4">Add product to database</small>
+			</h2>
 			<div class="my-3">
 				<label for="inputUser" class="fw-bold">
 					User:
@@ -202,7 +214,6 @@ function AddItemForm() {
 					<div class="invalid-feedback">Please choose a username.</div>
 				</div>
 			</div>
-
 			<div class="mb-3">
 				<label for="inputPrice" class="fw-bold">
 					Product Price:

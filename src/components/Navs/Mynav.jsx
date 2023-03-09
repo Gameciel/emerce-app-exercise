@@ -1,12 +1,9 @@
 import React from "react";
 import MiniCart from "../Carts/MiniCart";
 
-// import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export default function Mynav() {
-	// const cartData = useSelector(state => state.cart);
-
+export default function Mynav(props) {
 	return (
 		<nav
 			className="navbar navbar-expand-md navbar-light shadow-sm"
@@ -56,7 +53,7 @@ export default function Mynav() {
 					</li>
 				</ul>
 
-				<form className="d-flex col-8 mx-2">
+				<form className="d-flex mx-2" style={{ width: "50vw" }}>
 					<div className="input-group">
 						<span
 							className="input-group-text"
@@ -78,7 +75,7 @@ export default function Mynav() {
 					</div>
 				</form>
 
-				<ul className="navbar-nav ms-2 me-1">
+				<ul className="navbar-nav ms-2 me-auto">
 					<li className="nav-item dropdown">
 						<a
 							className="nav-link"
@@ -123,10 +120,20 @@ export default function Mynav() {
 						</div>
 					</li>
 				</ul>
+
 				<div
-					style={{ marginLeft: "auto", flex: "1" }}
+					style={{ flex: "1" }}
 					className="d-flex flex-row align-items-center justify-content-center"
 				>
+					<ul className="navbar-nav me-3 ms-5">
+						<li className="nav-item active">
+							<Link to="/admin">
+								<button type="button" className="btn btn-success" href="#">
+									Admin page
+								</button>
+							</Link>
+						</li>
+					</ul>
 					<i
 						className="bi bi-person-circle"
 						style={{
@@ -134,9 +141,9 @@ export default function Mynav() {
 							color: "#03ac0e",
 						}}
 					></i>
-					<a href="#" className="nav-link ms-2">
+					<div href="#" className="nav-link ms-2">
 						admin
-					</a>
+					</div>
 				</div>
 			</div>
 		</nav>

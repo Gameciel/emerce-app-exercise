@@ -28,7 +28,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
 import Cart from "./pages/Cart";
-
+import AdminPage from "./pages/AdminPage.jsx";
 const store = configureStore({ reducer: rootReducer });
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
 					<Routes>
 						<Route path="/emerce-app-exercise" element={<Main />} />
 						<Route path="/cart" element={<Cart />} />
+						<Route path="/admin" element={<AdminPage />} />
 					</Routes>
 				</Provider>
 			</BrowserRouter>
