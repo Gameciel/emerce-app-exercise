@@ -140,14 +140,16 @@ function AddItemForm() {
 	});
 
 	const handleSubmitButton = () => {
-		axios
-			.post(`${API_URL}/products`, userInput)
-			.then(res => {
-				console.log(res);
-			})
-			.catch(err => {
-				console.log(err);
-			});
+		if (userInput.name && userInput.price && userInput.image) {
+			axios
+				.post(`${API_URL}/products`, userInput)
+				.then(res => {
+					console.log(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	};
 	return (
 		<form
@@ -220,7 +222,7 @@ function AddItemForm() {
 				</label>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">
-						Rp
+						IDR
 					</span>
 					<input
 						type="number"

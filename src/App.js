@@ -29,6 +29,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Cart from "./pages/Cart";
 import AdminPage from "./pages/AdminPage.jsx";
+
 const store = configureStore({ reducer: rootReducer });
 
 function App() {

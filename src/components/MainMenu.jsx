@@ -5,6 +5,8 @@ import axios from "axios";
 import { API_URL } from "../fake-api/API_URL.js";
 
 export default function MainMenu() {
+	// const dispatch = useDispatch()
+
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -33,11 +35,18 @@ export default function MainMenu() {
 					<div className="card-body">
 						<h5 className="card-title mb-4">{item.name}</h5>
 						<h6 className="card-title">
-							<i className="bi bi-award me-1 mb-0"></i>
+							{item.merchant.status === "Pro Merchant" ? (
+								<i className="bi bi-bookmark-check me-1 mb-0"></i>
+							) : (
+								<i className="bi bi-award me-1 mb-0"></i>
+							)}
 
 							{item.merchant.name}
 						</h6>
-						<p className="card-title mt-0 mb-4">{item.merchant.location}</p>
+						<p className="card-title mt-0 mb-4">
+							<i className="bi bi-geo-alt"></i>
+							{item.merchant.location}
+						</p>
 						<span className="badge bg-primary rounded-pill mb-4">
 							Rp {item.price.toLocaleString("id")} / pc
 						</span>
@@ -55,7 +64,7 @@ export default function MainMenu() {
 	};
 
 	return (
-		<div className="container">
+		<div className="container pb-5">
 			<div
 				class="alert alert-dark alert-dismissible fade show mt-5"
 				role="alert"
