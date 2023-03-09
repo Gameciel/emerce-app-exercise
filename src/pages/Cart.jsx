@@ -9,13 +9,26 @@ export default function Cart() {
 
 	const [itemByStore, setItemByStore] = useState();
 	const [isBusy, setBusy] = useState(true);
+	const [totalBill, setTotalBill] = useState(0);
+	const [totalItem, setTotalItem] = useState(0);
 
 	useEffect(() => {
 		setItemByStore(groupItemByStore(cartData));
+		setTotalBill(getTotalBill);
+		setTotalItem(getTotalItem);
 		setBusy(false);
 	}, [cartData]);
 
-	useEffect(() => {}, [cartData]);
+	const getTotalBill = () => {
+		return cartData.reduce((previousValue, currentValue) => {
+			return previousValue + currentValue.qty * currentValue.price;
+		}, 0);
+	};
+	const getTotalItem = () => {
+		return cartData.reduce((previousValue, currentValue) => {
+			return previousValue + currentValue.qty;
+		}, 0);
+	};
 
 	const RenderItemByStore = () => {
 		return Object.keys(itemByStore).map((storeName, index) => {
@@ -104,14 +117,14 @@ export default function Cart() {
 						<hr></hr>
 						<h4>Ringkasan belanja</h4>
 						<div className="d-flex flex-row justify-content-between">
-							<p>0 Barang</p>
-							<p className="fw-bold">Rp 0</p>
+							<p>{totalItem} Barang</p>
+							<p className="fw-bold">Rp {totalBill.toLocaleString("id")}</p>
 						</div>
 						<button
 							className="btn fw-bold"
 							style={{ backgroundColor: "#03ac0e", color: "white" }}
 						>
-							Beli
+							Beli ({cartData.length})
 						</button>
 					</div>
 				</div>
