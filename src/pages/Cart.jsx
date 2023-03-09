@@ -134,7 +134,7 @@ export default function Cart() {
 			</div>
 			<div className="container d-flex flex-row align-items-center justify-content-start mt-5">
 				<Link to="/emerce-app-exercise">
-					<button type="button" className="btn btn-link mt-3">
+					<button type="button" className="btn btn-link mt-0 mb-5">
 						{"<"} Kembali ke menu
 					</button>
 				</Link>
