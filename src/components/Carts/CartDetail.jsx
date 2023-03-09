@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import ItemDetail from "./ItemDetail";
 
-export default function CartDetail(props) {
+export default function CartDetailByStore(props) {
 
-
-	const renderItemDetail = () => {
-		return props.queryData.map((data, index) => {
-			if (data.qty) {
-				return <ItemDetail key={index} queryData={data} />;
-			}
-		});
-	};
+	const RenderItem = () => props.queryData.map(item => <ItemDetail queryData={item}/>)
 
 	return (
 		<div className="d-flex flex-column justify-content-start">
@@ -31,24 +25,21 @@ export default function CartDetail(props) {
 							htmlFor="flexCheckDefault"
 							style={{ fontSize: "0.8em" }}
 						>
-							
-								<i className="bi bi-award me-1"></i>
-						
-								<i className="bi bi-bookmark-star me-1"></i>
-				
-					
+							<i className="bi bi-award me-1"></i>
+						{props.storeName}
 						</label>
 						<div style={{ fontSize: "0.8em" }}>
 							<i className="bi bi-geo-alt-fill me-1"></i>
-							
+						{props.queryData[0].merchant.location}
 						</div>
 					</div>
 				</div>
 			</div>
-			{renderItemDetail()}
+			<RenderItem />
 		</div>
 	);
 }
+
 
 // const getMerchantDataFromDatabase = (merchantData, merchantID) => {
 // 	return {

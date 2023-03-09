@@ -1,10 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
+import CartDetailByStore from "../components/Carts/CartDetail.jsx";
+
 import CartDetail from "../components/Carts/CartDetail.jsx";
 
-
 export default function Cart() {
+	const cartData = useSelector(state => state.cart);
+
+	const [itemByStore, setItemByStore] = useState();
+	const [isBusy, setBusy] = useState(true)
+
+	useEffect(() => {
+		setItemByStore(groupItemByStore(cartData));
+		setBusy(false)
+	}, []);
+
+	const RenderItemByStore = () => {
+		return Object.keys(itemByStore).map((storeName, index) => {
+			return <CartDetailByStore key={index} storeName={storeName} queryData={cartData} />;
+		});
+	};
+
 
 	return (
 		<>
@@ -41,22 +59,19 @@ export default function Cart() {
 										type="checkbox"
 										role="switch"
 										id="flexSwitchCheckDefault"
-									
 									/>
 									<label
 										className="form-check-label"
 										htmlFor="flexSwitchCheckDefault"
 									>
-	
-											<i className="bi bi-trash3"></i>
-				
+										<i className="bi bi-trash3"></i>
 									</label>
 								</div>
 							</div>
 						</div>
 						<hr className="my-3" />
 					</div>
-					<div>Cart Kosong</div>
+					{!isBusy ? <RenderItemByStore /> : <div>Cart Kosong</div>}
 				</div>
 				<div
 					className="d-flex flex-column mt-5 ms-5 col-2 shadow-sm border border-2 py-3 px-3 rounded"
@@ -81,16 +96,13 @@ export default function Cart() {
 						<h4>Ringkasan belanja</h4>
 						<div className="d-flex flex-row justify-content-between">
 							<p>0 Barang</p>
-							<p className="fw-bold">
-								Rp 0
-							</p>
+							<p className="fw-bold">Rp 0</p>
 						</div>
 						<button
 							className="btn fw-bold"
 							style={{ backgroundColor: "#03ac0e", color: "white" }}
-					
 						>
-							Beli 
+							Beli
 						</button>
 					</div>
 				</div>
@@ -105,3 +117,15 @@ export default function Cart() {
 		</>
 	);
 }
+
+const groupItemByStore = rawCartList => {
+
+	return rawCartList.reduce((previousValue, currentValue) => {
+
+		if (previousValue[currentValue.merchant.name]) {
+			return {...previousValue, [currentValue.merchant.name]: [...previousValue[currentValue.merchant.name], currentValue] }
+		} else {
+			return {...previousValue, [currentValue.merchant.name]: [currentValue]}
+		}
+	}, {});
+};

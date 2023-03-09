@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function ItemDetail(props) {
-
+	console.log(props.queryData)
 	return (
 		<>
 			<div className="d-flex flex-row ms-3">
@@ -10,19 +10,18 @@ export default function ItemDetail(props) {
 						className="form-check-input me-3"
 						type="checkbox"
 						value=""
-					
 						checked
 						disabled
 					/>
 					<img
 						style={{ width: "65px", height: "65px" }}
-						src=""
+						src={props.queryData.image}
 					/>
 				</div>
 				<div className="d-flex flex-column ms-3">
-					<div>Name</div>
+					<div>{props.queryData.name}</div>
 					<div className="fw-bold" style={{ fontSize: "0.9em" }}>
-						Rp 0
+						Rp {props.queryData.price.toLocaleString("id")}
 					</div>
 				</div>
 			</div>
@@ -61,7 +60,7 @@ export default function ItemDetail(props) {
 					>
 						-
 					</button>
-				0
+					{props.queryData.qty}
 					<button
 						type="button"
 						className="btn btn-link ms-2 fw-bold"
