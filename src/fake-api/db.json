@@ -57,9 +57,9 @@
 		},
 		{
 			"id": 6,
-			"name": "Essential Oil2",
-			"price": 500000,
-			"image": "https://i.etsystatic.com/iap/55c7ab/4521497480/iap_640x640.4521497480_4brrs39z.jpg?version=0",
+			"name": "Kits DIY Embroidery set for beginner",
+			"price": 600000,
+			"image": "https://i.etsystatic.com/20217532/r/il/45a493/4097358845/il_794xN.4097358845_44w7.jpg",
 			"merchant": {
 				"name": "Toko B",
 				"status": "Pro Merchant",
@@ -67,9 +67,10 @@
 			}
 		}
 	],
-
 	"merchants": [
-		{ "_comment": "obsolete data (old scheme)" },
+		{
+			"_comment": "obsolete data (old scheme)"
+		},
 		{
 			"id": "1",
 			"name": "Toko A",

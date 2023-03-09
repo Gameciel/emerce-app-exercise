@@ -39,7 +39,7 @@ function AdminBody() {
 	const [productList, setProductList] = useState([]);
 	const [page, setPage] = useState(1);
 	const [pageEnd, setPageEnd] = useState(1);
-	const [itemPerPage, setItemPerPage] = useState(5);
+	const [itemPerPage, setItemPerPage] = useState(3);
 
 	useEffect(() => {
 		axios
@@ -54,7 +54,7 @@ function AdminBody() {
 	const renderTableFromAPI = () => {
 		const paginated = productList.slice(
 			(page - 1) * itemPerPage,
-			page * itemPerPage - 1
+			page * itemPerPage
 		);
 		return paginated.map(value => {
 			return (
@@ -121,11 +121,32 @@ function AdminBody() {
 }
 
 function AddItemForm() {
+	const [userInput, setUserInput] = useState({
+		name: "",
+		price: "",
+		image: "https://picsum.photos/200/200",
+		merchant: {
+			name: "Admin",
+			status: "Admin",
+			location: "Solo",
+		},
+	});
+
+	const handleSubmitButton = () => {
+		axios
+			.post(`${API_URL}/products`, userInput)
+			.then(res => {
+				console.log(res);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
 	return (
-		<div className="ms-5">
+		<form className="ms-5 needs-validation">
 			<h2>Add Item:</h2>
 			<div class="my-3">
-				<label for="inputPrice" class="fw-bold">
+				<label for="inputUser" class="fw-bold">
 					User:
 				</label>
 				<div class="input-group mb-3">
@@ -136,14 +157,15 @@ function AddItemForm() {
 						type="text"
 						class="form-control"
 						placeholder="admin"
-						aria-label="Username"
+						aria-label="inputUser"
+						id="inputUser"
 						aria-describedby="basic-addon1"
 						disabled
 					/>
 				</div>
 			</div>
 			<div class="my-3">
-				<label for="inputPrice" class="fw-bold">
+				<label for="inputLocation" class="fw-bold">
 					Location:
 				</label>
 				<div class="input-group mb-3">
@@ -154,12 +176,33 @@ function AddItemForm() {
 						type="text"
 						class="form-control"
 						placeholder="Solo"
-						aria-label="Username"
+						aria-label="inputLocation"
 						aria-describedby="basic-addon1"
+						id="inputLocation"
 						disabled
 					/>
+					<div class="invalid-feedback">Harus diisi.</div>
 				</div>
 			</div>
+			<div class="my-3">
+				<label for="inputName" class="fw-bold">
+					Product name:
+				</label>
+				<div class="input-group mb-3">
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Nama produk"
+						aria-label="ProductName"
+						aria-describedby="basic-addon1"
+						id="inputName"
+						onChange={e => setUserInput({ ...userInput, name: e.target.value })}
+						required
+					/>
+					<div class="invalid-feedback">Please choose a username.</div>
+				</div>
+			</div>
+
 			<div class="mb-3">
 				<label for="inputPrice" class="fw-bold">
 					Product Price:
@@ -174,11 +217,17 @@ function AddItemForm() {
 						placeholder="Harga"
 						aria-label="Harga"
 						aria-describedby="basic-addon1"
+						id="inputPrice"
+						onChange={e =>
+							setUserInput({ ...userInput, price: e.target.value })
+						}
+						required
 					/>
+					<div class="invalid-feedback">Harus diisi</div>
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="inputPrice" class="fw-bold">
+				<label for="inputImage" class="fw-bold">
 					Product Image:
 				</label>
 				<div class="input-group mb-3">
@@ -189,14 +238,25 @@ function AddItemForm() {
 						type="url"
 						class="form-control"
 						placeholder="https://image.source"
+						value="https://picsum.photos/200/200"
 						aria-label="Harga"
 						aria-describedby="basic-addon1"
+						id="inputImage"
+						onChange={e =>
+							setUserInput({ ...userInput, image: e.target.value })
+						}
+						required
 					/>
+					<div class="invalid-feedback">Please choose a username.</div>
 				</div>
 			</div>
-			<button type="button" className="btn btn-primary mt-2">
+			<button
+				className="btn btn-primary mt-2"
+				onClick={() => handleSubmitButton()}
+				type="submit"
+			>
 				Add Item
 			</button>
-		</div>
+		</form>
 	);
 }
