@@ -70,8 +70,8 @@ export const cartReducer = (state = init_state, action) => {
 		// case "MODIFY_NOTE":
 		// 	return state;
 
-		case "HARD_DELETE":
-			return state;
+		case "HARD_DELETE_ITEM":
+			return state.filter(item => item.id !== action.payload);
 
 		case "ADD_ITEM_TO_CART":
 			if (state.some(value => value.id === action.payload.id)) {

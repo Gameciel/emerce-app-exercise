@@ -86,13 +86,18 @@ export default function MainMenu() {
 				<hr />
 				<p className="mb-0">
 					{" "}
-					<i className="bi bi-info-circle"></i> Edit <b>store</b> data on:
-					src/fake-api
+					<i className="bi bi-info-circle"></i> Edit <b>cart</b> data on:
+					src/redux/reducers/cartData.js
 				</p>
 				<p className="mb-0">
 					{" "}
-					<i className="bi bi-info-circle"></i> Edit <b>cart</b> data on:
-					src/redux/reducers/cartData.js
+					<i className="bi bi-info-circle"></i> Edit <b>store</b> data on:
+					src/fake-api/db.json
+				</p>
+				<p className="mb-0">
+					{" "}
+					<i className="bi bi-info-circle"></i> Start{" "}
+					<b>db-json @ port 2000 </b> or adjust it on src/fake-api/API_URL.js
 				</p>
 			</div>
 

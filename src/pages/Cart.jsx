@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDeleteMode } from "../redux/action/action";
 import { Link } from "react-router-dom";
 import CartDetailByStore from "../components/Carts/CartDetailByStore";
 
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
+	const appSetting = useSelector(state => state.appSetting);
 
 	const [itemByStore, setItemByStore] = useState();
 	const [isBusy, setBusy] = useState(true);
 	const [totalBill, setTotalBill] = useState(0);
 	const [totalItem, setTotalItem] = useState(0);
 
+	const dispatch = useDispatch();
 	useEffect(() => {
 		setItemByStore(groupItemByStore(cartData));
 		setTotalBill(getTotalBill);
@@ -77,6 +79,7 @@ export default function Cart() {
 										type="checkbox"
 										role="switch"
 										id="flexSwitchCheckDefault"
+										onClick={e => dispatch(toggleDeleteMode(e.target.checked))}
 									/>
 									<label
 										className="form-check-label"

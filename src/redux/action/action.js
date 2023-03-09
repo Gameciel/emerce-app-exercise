@@ -24,3 +24,21 @@ export const addItemToCart = item => {
 		});
 	};
 };
+
+export const toggleDeleteMode = boolean => {
+	return dispatch => {
+		dispatch({
+			type: "TOGGLE_DELETE_MODE",
+			payload: boolean,
+		});
+	};
+};
+
+export const hardDeleteItem = itemID => {
+	return dispatch => {
+		dispatch({
+			type: "HARD_DELETE_ITEM",
+			payload: itemID,
+		});
+	};
+};

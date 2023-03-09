@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementByOne, incrementByOne } from "../../redux/action/action";
+import {
+	decrementByOne,
+	incrementByOne,
+	hardDeleteItem,
+} from "../../redux/action/action";
 
 export default function ItemDetail(props) {
 	const dispatch = useDispatch();
+	const appSetting = useSelector(state => state.appSetting);
 
 	return (
 		<>
@@ -38,12 +43,22 @@ export default function ItemDetail(props) {
 					</div>
 				</div>
 				<div className="d-flex flex-row align-items-center">
-					<div className="ms-auto" style={{ color: "grey" }}>
-						Pindahkan ke wishlist
-					</div>
-					<div className="ms-3" style={{ color: "grey" }}>
-						|
-					</div>
+					{appSetting.deleteMode ? (
+						<i
+							onClick={() => dispatch(hardDeleteItem(props.queryData.id))}
+							style={{ color: "red" }}
+							className="bi bi-trash3"
+						></i>
+					) : (
+						<>
+							<div className="ms-auto" style={{ color: "grey" }}>
+								Pindahkan ke wishlist
+							</div>
+							<div className="ms-3" style={{ color: "grey" }}>
+								|
+							</div>
+						</>
+					)}
 
 					<div className="d-flex flex-row ms-4 me-1 align-items-center">
 						<button
@@ -51,6 +66,7 @@ export default function ItemDetail(props) {
 							className="btn btn-link me-2 fw-bold"
 							style={{ textDecoration: "none", color: "#03AC0E" }}
 							onClick={() => dispatch(decrementByOne(props.queryData.id))}
+							disabled={appSetting.deleteMode}
 						>
 							-
 						</button>
@@ -60,6 +76,7 @@ export default function ItemDetail(props) {
 							className="btn btn-link ms-2 fw-bold"
 							style={{ textDecoration: "none", color: "#03AC0E" }}
 							onClick={() => dispatch(incrementByOne(props.queryData.id))}
+							disabled={appSetting.deleteMode}
 						>
 							+
 						</button>
