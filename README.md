@@ -1,3 +1,6 @@
+### `../src/fake-api> npx json-server db.json -p 2000`
+Make sure to run npx json-server db.json -p 2000 in /src/fake-api/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
