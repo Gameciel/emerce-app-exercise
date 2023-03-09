@@ -8,7 +8,7 @@ export default function AdminPage() {
 	return (
 		<>
 			<AdminHeader />
-			<div className="d-flex flex-row my-5 justify-content-center">
+			<div className="d-flex flex-row my-4 justify-content-center">
 				<AdminBody />
 				<AddItemForm />
 			</div>
