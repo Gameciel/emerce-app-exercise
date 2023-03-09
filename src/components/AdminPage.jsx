@@ -37,16 +37,26 @@ function AdminHeader() {
 
 function AdminBody() {
 	const [productList, setProductList] = useState([]);
+	const [page, setPage] = useState(1);
+	const [pageEnd, setPageEnd] = useState(1);
+	const [itemPerPage, setItemPerPage] = useState(5);
 
 	useEffect(() => {
 		axios
 			.get(`${API_URL}/products`)
-			.then(res => setProductList(res.data))
+			.then(res => {
+				setPageEnd(Math.ceil(res.data.length / itemPerPage));
+				setProductList(res.data);
+			})
 			.catch(err => console.log(err));
 	}, []);
 
 	const renderTableFromAPI = () => {
-		return productList.map(value => {
+		const paginated = productList.slice(
+			(page - 1) * itemPerPage,
+			page * itemPerPage - 1
+		);
+		return paginated.map(value => {
 			return (
 				<li className="list-group-item d-flex flex-row justify-content-between align-items-start pb-4 pt-0">
 					<div className="ms-1 me-auto">
@@ -86,11 +96,23 @@ function AdminBody() {
 				{renderTableFromAPI()}
 			</ul>
 			<div className="d-flex flex-row align-items-center my-3">
-				<button type="button" className="btn btn-link" disabled>
+				<button
+					type="button"
+					className="btn btn-link"
+					onClick={() => setPage(page - 1)}
+					disabled={page === 1}
+				>
 					{"<"}
 				</button>
-				<div className="mx-4">Page 1 of 1</div>
-				<button type="button" className="btn btn-link" disabled>
+				<div className="mx-4">
+					Page {page} of {pageEnd}
+				</div>
+				<button
+					type="button"
+					className="btn btn-link"
+					onClick={() => setPage(page + 1)}
+					disabled={page === pageEnd}
+				>
 					{">"}
 				</button>
 			</div>

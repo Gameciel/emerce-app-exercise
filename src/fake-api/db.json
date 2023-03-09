@@ -54,6 +54,17 @@
 				"status": "Pro Merchant",
 				"location": "Bandung"
 			}
+		},
+		{
+			"id": 6,
+			"name": "Essential Oil2",
+			"price": 500000,
+			"image": "https://i.etsystatic.com/iap/55c7ab/4521497480/iap_640x640.4521497480_4brrs39z.jpg?version=0",
+			"merchant": {
+				"name": "Toko B",
+				"status": "Pro Merchant",
+				"location": "Bandung"
+			}
 		}
 	],
 
