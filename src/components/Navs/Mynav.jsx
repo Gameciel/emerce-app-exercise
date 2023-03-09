@@ -2,8 +2,11 @@ import React from "react";
 import MiniCart from "../Carts/MiniCart";
 
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Mynav(props) {
+	const cartData = useSelector(state => state.cart);
+
 	return (
 		<nav
 			className="navbar navbar-expand-md navbar-light shadow-sm"
@@ -90,7 +93,7 @@ export default function Mynav(props) {
 							</div>
 						</a>
 						<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							0
+							{cartData.length}
 						</span>
 						<div
 							style={{
@@ -102,8 +105,8 @@ export default function Mynav(props) {
 							aria-labelledby="navbarDropdownMenuLink"
 						>
 							<div className="d-flex flex-row">
-								<p className="">
-									<b style={{ color: "grey" }}>Keranjang (0)</b>
+								<p className="me-4">
+									<b style={{ color: "grey" }}>Keranjang ({cartData.length})</b>
 								</p>
 								<Link
 									style={{
@@ -116,7 +119,7 @@ export default function Mynav(props) {
 									Lihat Sekarang
 								</Link>
 							</div>
-							<MiniCart />
+							<MiniCart cartData={cartData} />
 						</div>
 					</li>
 				</ul>

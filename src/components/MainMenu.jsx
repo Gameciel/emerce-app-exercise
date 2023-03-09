@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { API_URL } from "../fake-api/API_URL.js";
+import { useDispatch } from "react-redux";
 
 export default function MainMenu() {
-	// const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const [items, setItems] = useState([]);
 
@@ -14,7 +15,6 @@ export default function MainMenu() {
 			.get(`${API_URL}/products`)
 			.then(res => {
 				setItems(res.data);
-				console.log(res.data);
 			})
 			.catch(err => console.log(err));
 	}, []);
@@ -66,7 +66,7 @@ export default function MainMenu() {
 	return (
 		<div className="container pb-5">
 			<div
-				class="alert alert-dark alert-dismissible fade show mt-5"
+				className="alert alert-dark alert-dismissible fade show mt-5"
 				role="alert"
 			>
 				<div className="d-flex flex-row justify-content-between align-items-center">
