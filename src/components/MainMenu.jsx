@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { API_URL } from "../fake-api/API_URL.js";
 import { useDispatch } from "react-redux";
+import { addItemToCart } from "../redux/action/action.js";
 
 export default function MainMenu() {
 	const dispatch = useDispatch();
@@ -54,7 +55,11 @@ export default function MainMenu() {
 							Stock: <i className="bi bi-infinity"></i>
 						</span>
 						{/* <p className="card-text mb-4"></p> */}
-						<button type="btn" className="btn btn-success ms-auto me-auto">
+						<button
+							type="btn"
+							className="btn btn-success ms-auto me-auto"
+							onClick={() => dispatch(addItemToCart(item))}
+						>
 							Tambah Barang Ke Keranjang
 						</button>
 					</div>

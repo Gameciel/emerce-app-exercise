@@ -15,3 +15,12 @@ export const decrementByOne = itemID => {
 		});
 	};
 };
+
+export const addItemToCart = item => {
+	return dispatch => {
+		dispatch({
+			type: "ADD_ITEM_TO_CART",
+			payload: item,
+		});
+	};
+};

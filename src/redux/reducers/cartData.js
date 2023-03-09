@@ -1,3 +1,5 @@
+import { isCompositeComponent } from "react-dom/test-utils";
+
 const init_state = [
 	{
 		id: 4,
@@ -55,7 +57,6 @@ export const cartReducer = (state = init_state, action) => {
 
 		case "DECREMENT_BY_ONE":
 			const toBeDecremented = state.map(item => {
-				console.log(item.qty);
 				if (item.id === action.payload.id && item.qty - 1 === 0) {
 					return null;
 				} else if (item.id === action.payload.id) {
@@ -72,9 +73,18 @@ export const cartReducer = (state = init_state, action) => {
 		case "HARD_DELETE":
 			return state;
 
-		case "ADD_TO_CART":
-			//if existent, add by one
-			return state;
+		case "ADD_ITEM_TO_CART":
+			if (state.some(value => value.id === action.payload.id)) {
+				return state.map(item => {
+					if (item.id === action.payload.id) {
+						return { ...item, qty: item.qty + 1 };
+					} else {
+						return item;
+					}
+				});
+			} else {
+				return [...state, { ...action.payload, qty: 1 }];
+			}
 
 		default:
 			return state;
