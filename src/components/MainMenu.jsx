@@ -79,7 +79,10 @@ export default function MainMenu() {
 					></button>
 				</div>
 				<hr />
-				<p className="mb-0">Edit data on: src/fake-api</p>
+				<p className="mb-0">
+					{" "}
+					<i className="bi bi-info-circle"></i> Edit data on: src/fake-api
+				</p>
 			</div>
 
 			<div className="d-flex flex-row flex-wrap align-items-center">
