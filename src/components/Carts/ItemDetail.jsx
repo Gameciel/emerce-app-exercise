@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function ItemDetail(props) {
-	console.log(props.queryData)
+	console.log(props.queryData);
 	return (
 		<>
 			<div className="d-flex flex-row ms-3">
@@ -26,51 +26,41 @@ export default function ItemDetail(props) {
 				</div>
 			</div>
 			<div className="d-flex flex-row align-items-center justify-content-end ms-3 mt-3 mb-4 mx-1 pb-3 border-bottom border-3">
-			
-				<div className="d-flex flex-row">
-					<div
-						className="ms-4 me-3"
-						style={{ color: "#03ac0e" }}
-					>
+				<div className="d-flex flex-row align-items-center me-auto">
+					<div className="ms-4 me-3" style={{ color: "#03ac0e" }}>
 						Tulis Catatan
 					</div>
-			
-
-
-					<div className="me-4" style={{ color: "grey", fontSize: "0.9em" }}>
-						Catatan: 
+					<div className="me-auto" style={{ color: "grey", fontSize: "0.9em" }}>
+						Catatan:
 					</div>
-	
-	
-					
-						<div className="ms-auto" style={{ color: "grey" }}>
-							Pindahkan ke wishlist
-						</div>
-						<div className="ms-3" style={{ color: "grey" }}>
-							|
-						</div>
-					
-			
-				<div className="d-flex flex-row ms-4 me-1 align-items-center">
-					<button
-						type="button"
-						className="btn btn-link me-2 fw-bold"
-						style={{ textDecoration: "none", color: "#03AC0E" }}
-					
-					>
-						-
-					</button>
-					{props.queryData.qty}
-					<button
-						type="button"
-						className="btn btn-link ms-2 fw-bold"
-						style={{ textDecoration: "none", color: "#03AC0E" }}
-		
-					>
-						+
-					</button>
+				</div>
+				<div className="d-flex flex-row align-items-center">
+					<div className="ms-auto" style={{ color: "grey" }}>
+						Pindahkan ke wishlist
+					</div>
+					<div className="ms-3" style={{ color: "grey" }}>
+						|
+					</div>
+
+					<div className="d-flex flex-row ms-4 me-1 align-items-center">
+						<button
+							type="button"
+							className="btn btn-link me-2 fw-bold"
+							style={{ textDecoration: "none", color: "#03AC0E" }}
+						>
+							-
+						</button>
+						{props.queryData.qty}
+						<button
+							type="button"
+							className="btn btn-link ms-2 fw-bold"
+							style={{ textDecoration: "none", color: "#03AC0E" }}
+						>
+							+
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		</>)
+		</>
+	);
 }

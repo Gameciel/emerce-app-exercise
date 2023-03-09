@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import CartDetailByStore from "../components/Carts/CartDetail.jsx";
-
-import CartDetail from "../components/Carts/CartDetail.jsx";
+import CartDetailByStore from "../components/Carts/CartDetailByStore";
 
 export default function Cart() {
 	const cartData = useSelector(state => state.cart);
 
 	const [itemByStore, setItemByStore] = useState();
-	const [isBusy, setBusy] = useState(true)
+	const [isBusy, setBusy] = useState(true);
 
 	useEffect(() => {
 		setItemByStore(groupItemByStore(cartData));
-		setBusy(false)
+		setBusy(false);
 	}, []);
 
 	const RenderItemByStore = () => {
 		return Object.keys(itemByStore).map((storeName, index) => {
-			return <CartDetailByStore key={index} storeName={storeName} queryData={cartData} />;
+			return (
+				<CartDetailByStore
+					key={index}
+					storeName={storeName}
+					queryData={itemByStore[storeName]}
+				/>
+			);
 		});
 	};
-
 
 	return (
 		<>
@@ -119,13 +122,17 @@ export default function Cart() {
 }
 
 const groupItemByStore = rawCartList => {
-
 	return rawCartList.reduce((previousValue, currentValue) => {
-
 		if (previousValue[currentValue.merchant.name]) {
-			return {...previousValue, [currentValue.merchant.name]: [...previousValue[currentValue.merchant.name], currentValue] }
+			return {
+				...previousValue,
+				[currentValue.merchant.name]: [
+					...previousValue[currentValue.merchant.name],
+					currentValue,
+				],
+			};
 		} else {
-			return {...previousValue, [currentValue.merchant.name]: [currentValue]}
+			return { ...previousValue, [currentValue.merchant.name]: [currentValue] };
 		}
 	}, {});
 };

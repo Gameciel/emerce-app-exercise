@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import ItemDetail from "./ItemDetail";
 
 export default function CartDetailByStore(props) {
+	const RenderItem = () =>
+		props.queryData.map(item => <ItemDetail queryData={item} />);
 
-	const RenderItem = () => props.queryData.map(item => <ItemDetail queryData={item}/>)
-
+	console.log(props.queryData);
 	return (
 		<div className="d-flex flex-column justify-content-start">
 			<div className="d-flex flex-row justify-content-start mb-3">
@@ -26,11 +27,11 @@ export default function CartDetailByStore(props) {
 							style={{ fontSize: "0.8em" }}
 						>
 							<i className="bi bi-award me-1"></i>
-						{props.storeName}
+							{props.storeName}
 						</label>
 						<div style={{ fontSize: "0.8em" }}>
 							<i className="bi bi-geo-alt-fill me-1"></i>
-						{props.queryData[0].merchant.location}
+							{props.queryData[0].merchant.location}
 						</div>
 					</div>
 				</div>
@@ -39,7 +40,6 @@ export default function CartDetailByStore(props) {
 		</div>
 	);
 }
-
 
 // const getMerchantDataFromDatabase = (merchantData, merchantID) => {
 // 	return {
