@@ -43,18 +43,37 @@ const init_state = [
 export const cartReducer = (state = init_state, action) => {
 	switch (action.type) {
 		case "INCREMENT_BY_ONE":
-			return state;
+			const toBeIncremented = state.map(item => {
+				if (item.id === action.payload.id) {
+					return { ...item, qty: item.qty + 1 };
+				} else {
+					return item;
+				}
+			});
+
+			return toBeIncremented;
 
 		case "DECREMENT_BY_ONE":
-			return state;
+			const toBeDecremented = state.map(item => {
+				console.log(item.qty);
+				if (item.id === action.payload.id && item.qty - 1 === 0) {
+					return null;
+				} else if (item.id === action.payload.id) {
+					return { ...item, qty: item.qty - 1 };
+				} else {
+					return item;
+				}
+			});
+			return toBeDecremented.filter(value => value !== null);
 
-		case "MODIFY_NOTE":
-			return state;
+		// case "MODIFY_NOTE":
+		// 	return state;
 
 		case "HARD_DELETE":
 			return state;
 
 		case "ADD_TO_CART":
+			//if existent, add by one
 			return state;
 
 		default:

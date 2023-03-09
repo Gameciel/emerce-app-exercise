@@ -7,7 +7,6 @@ export default function CartDetailByStore(props) {
 	const RenderItem = () =>
 		props.queryData.map(item => <ItemDetail queryData={item} />);
 
-	console.log(props.queryData);
 	return (
 		<div className="d-flex flex-column justify-content-start">
 			<div className="d-flex flex-row justify-content-start mb-3">
@@ -26,7 +25,11 @@ export default function CartDetailByStore(props) {
 							htmlFor="flexCheckDefault"
 							style={{ fontSize: "0.8em" }}
 						>
-							<i className="bi bi-award me-1"></i>
+							{props.queryData[0].merchant.status === "Pro Merchant" ? (
+								<i className="bi bi-bookmark-check me-1 mb-0"></i>
+							) : (
+								<i className="bi bi-award me-1 mb-0"></i>
+							)}
 							{props.storeName}
 						</label>
 						<div style={{ fontSize: "0.8em" }}>

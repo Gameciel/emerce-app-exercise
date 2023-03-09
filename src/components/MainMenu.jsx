@@ -81,7 +81,13 @@ export default function MainMenu() {
 				<hr />
 				<p className="mb-0">
 					{" "}
-					<i className="bi bi-info-circle"></i> Edit data on: src/fake-api
+					<i className="bi bi-info-circle"></i> Edit <b>store</b> data on:
+					src/fake-api
+				</p>
+				<p className="mb-0">
+					{" "}
+					<i className="bi bi-info-circle"></i> Edit <b>cart</b> data on:
+					src/redux/reducers/cartData.js
 				</p>
 			</div>
 

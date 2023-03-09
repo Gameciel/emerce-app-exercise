@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { decrementByOne, incrementByOne } from "../../redux/action/action";
 
 export default function ItemDetail(props) {
-	console.log(props.queryData);
+	const dispatch = useDispatch();
+
 	return (
 		<>
 			<div className="d-flex flex-row ms-3">
@@ -47,6 +50,7 @@ export default function ItemDetail(props) {
 							type="button"
 							className="btn btn-link me-2 fw-bold"
 							style={{ textDecoration: "none", color: "#03AC0E" }}
+							onClick={() => dispatch(decrementByOne(props.queryData.id))}
 						>
 							-
 						</button>
@@ -55,6 +59,7 @@ export default function ItemDetail(props) {
 							type="button"
 							className="btn btn-link ms-2 fw-bold"
 							style={{ textDecoration: "none", color: "#03AC0E" }}
+							onClick={() => dispatch(incrementByOne(props.queryData.id))}
 						>
 							+
 						</button>

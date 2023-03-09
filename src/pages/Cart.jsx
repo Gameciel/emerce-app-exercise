@@ -13,7 +13,9 @@ export default function Cart() {
 	useEffect(() => {
 		setItemByStore(groupItemByStore(cartData));
 		setBusy(false);
-	}, []);
+	}, [cartData]);
+
+	useEffect(() => {}, [cartData]);
 
 	const RenderItemByStore = () => {
 		return Object.keys(itemByStore).map((storeName, index) => {
@@ -74,7 +76,11 @@ export default function Cart() {
 						</div>
 						<hr className="my-3" />
 					</div>
-					{!isBusy ? <RenderItemByStore /> : <div>Cart Kosong</div>}
+					{!isBusy && cartData.length ? (
+						<RenderItemByStore />
+					) : (
+						<div>Cart Kosong</div>
+					)}
 				</div>
 				<div
 					className="d-flex flex-column mt-5 ms-5 col-2 shadow-sm border border-2 py-3 px-3 rounded"
